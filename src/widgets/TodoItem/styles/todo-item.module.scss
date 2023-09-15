@@ -1,0 +1,7 @@
+.todo {
+  @apply flex flex-wrap gap-6 py-6 text-lg md:text-2xl items-center justify-between;
+
+  > div {
+    @apply flex flex-wrap gap-6 items-center;
+  }
+}
