@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { useTodoContext } from "../../../../shared/model";
 import { Filter } from "../../../../shared/types";
+import { getTitle } from "../../lib/title";
 
 export const useTodoList = (filter: Filter) => {
   const { todos } = useTodoContext();
@@ -14,6 +16,10 @@ export const useTodoList = (filter: Filter) => {
         return !todo.done;
     }
   });
+
+  useEffect(() => {
+    document.title = getTitle(filter);
+  }, [filter]);
 
   return {
     todos: filteredTodos,

@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useTodoList } from "../model";
 import { TodoItem } from "../../TodoItem";
+import { Empty } from "../../../shared/ui";
 import { Filter } from "../../../shared/types";
 import style from "../styles/todo-list.module.scss";
 
@@ -12,9 +13,11 @@ export const TodoList: FC<Props> = ({ filter }) => {
 
   return (
     <div className={style.todoList}>
-      {todos.map((todo) => (
-        <TodoItem todo={todo} key={todo.id} />
-      ))}
+      {todos.length ? (
+        todos.map((todo) => <TodoItem todo={todo} key={todo.id} />)
+      ) : (
+        <Empty />
+      )}
     </div>
   );
 };
