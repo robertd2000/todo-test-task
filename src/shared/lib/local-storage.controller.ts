@@ -1,5 +1,5 @@
 export const localStorageController = {
-  setItem: (k: string, v: any): void => {
+  setItem: (k: string, v: unknown): void => {
     const value = JSON.stringify(v);
     localStorage.setItem(k, value);
   },
