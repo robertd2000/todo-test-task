@@ -1,7 +1,19 @@
 .todo {
-  @apply flex flex-wrap gap-6 py-6 text-lg md:text-2xl items-center justify-between;
+  @apply grid grid-flow-row-dense auto-rows-max grid-cols-8 md:grid-cols-10 lg:grid-cols-12 xl:grid-cols-12 gap-6 py-6 text-lg md:text-2xl items-center;
 
   > div {
     @apply flex flex-wrap gap-6 items-center;
+  }
+
+  .start {
+    @apply col-span-1;
+  }
+
+  .middle {
+    @apply col-span-6 md:col-span-8 lg:col-span-10 xl:col-span-10;
+  }
+
+  .end {
+    @apply col-span-1 flex justify-end;
   }
 }

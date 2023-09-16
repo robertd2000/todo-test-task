@@ -17,7 +17,7 @@ export const EditTodo: FC<EditTodoProps> = ({ todo }) => {
           autoFocus
         />
       ) : (
-        <span className={`font-semibold ${todo.done ? "line-through" : ""}`}>
+        <span className={`font-semibold break-all ${todo.done ? "line-through" : ""}`}>
           {todo.title}
         </span>
       )}
