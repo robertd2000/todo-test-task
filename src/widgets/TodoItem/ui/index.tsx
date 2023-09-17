@@ -7,7 +7,7 @@ import style from "../styles/todo-item.module.scss";
 
 export const TodoItem: FC<TodoItemProps> = ({ todo }) => {
   return (
-    <div className={style.todo}>
+    <div className={style.todo} data-testid="todo_list">
       <div className={style.start}>
         <CompleteTodo todo={todo} />
       </div>
@@ -15,7 +15,7 @@ export const TodoItem: FC<TodoItemProps> = ({ todo }) => {
         <EditTodo todo={todo} />
       </div>
       <div className={style.end}>
-        <DeleteTodo id={todo.id} />  
+        <DeleteTodo id={todo.id} />
       </div>
     </div>
   );

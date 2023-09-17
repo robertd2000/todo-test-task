@@ -7,5 +7,7 @@ import style from "../styles/delete-todo.module.scss";
 export const DeleteTodo: FC<DeleteTodoProps> = ({ id }) => {
   const { onDelete } = useDeleteTodo();
 
-  return <XSquare onClick={() => onDelete(id)} className={style.delete} />;
+  return (
+    <XSquare id={id} onClick={() => onDelete(id)} className={style.delete} />
+  );
 };

@@ -19,7 +19,9 @@ export const NewTodo = () => {
           onChange={(e) => setTodo(e.target.value)}
           onKeyDown={handleKeyDown}
         />
-        <button type="submit">New todo</button>
+        <button type="submit" id="submit" data-testid="submit">
+          New todo
+        </button>
       </div>
     </form>
   );
