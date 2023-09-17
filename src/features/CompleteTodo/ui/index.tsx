@@ -8,6 +8,7 @@ export const CompleteTodo: FC<CompleteTodoProps> = ({ todo }) => {
 
   return (
     <input
+      id={"complete"}
       type="checkbox"
       checked={checked}
       onChange={onCheck}

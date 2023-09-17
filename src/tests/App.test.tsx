@@ -6,16 +6,11 @@ import {
   within,
 } from "@testing-library/react";
 import { beforeEach, describe, expect, test } from "vitest";
-
 import App from "../app/index";
 import { localStorageController } from "../shared/lib/local-storage.controller";
 import { TodoItemType } from "../shared/types";
 
 describe("App", () => {
-  // beforeEach(() => {
-  //   localStorageController.setItem("todos", []);
-  // });
-
   test("app initialization", () => {
     render(<App />);
 
@@ -83,28 +78,58 @@ describe("App", () => {
     });
   });
 
-  describe("Delete task", () => {
-    let getById, todos: TodoItemType[], todo: string, container: unknown;
+  describe("Complete task", () => {
+    let getById, todos: TodoItemType[], todo: TodoItemType, container: unknown;
 
     beforeEach(() => {
       ({ container, getById } = setup());
 
       todos = localStorageController.getItem("todos") as TodoItemType[];
 
-      todo = todos.at(-1)?.id as string;
-      const deleteTask = getById(
+      todo = todos.at(-1) as TodoItemType;
+
+      const todoItem = getById(
         container as HTMLElement,
-        todo
+        todo.id
       ) as HTMLButtonElement;
+
+      const completeTask = getById(todoItem, "complete") as HTMLButtonElement;
+      fireEvent.click(completeTask);
+    });
+
+    test("task is completed", () => {
+      const currentTodo = (
+        localStorageController.getItem("todos") as TodoItemType[]
+      ).find((i) => i.id === todo.id);
+      expect(currentTodo?.done).toEqual(true);
+    });
+  });
+
+  describe("Delete task", () => {
+    let getById, todos: TodoItemType[], todo: TodoItemType, container: unknown;
+
+    beforeEach(() => {
+      ({ container, getById } = setup());
+
+      todos = localStorageController.getItem("todos") as TodoItemType[];
+
+      todo = todos.at(0) as TodoItemType;
+
+      const todoItem = getById(
+        container as HTMLElement,
+        todo.id
+      ) as HTMLButtonElement;
+
+      const deleteTask = getById(todoItem, "delete") as HTMLButtonElement;
       fireEvent.click(deleteTask);
     });
 
     test("task is not in todos", () => {
-      expect(todos).not.toEqual(expect.arrayContaining([todo]));
+      expect(todos).not.toEqual(expect.arrayContaining([todo.id]));
     });
 
     test("todo is not appear", () => {
-      expect(container as unknown as unknown).not.toHaveTextContent("First");
+      expect(container as unknown as unknown).not.toHaveTextContent(todo.title);
     });
   });
 });

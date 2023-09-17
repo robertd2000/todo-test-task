@@ -8,6 +8,10 @@ export const DeleteTodo: FC<DeleteTodoProps> = ({ id }) => {
   const { onDelete } = useDeleteTodo();
 
   return (
-    <XSquare id={id} onClick={() => onDelete(id)} className={style.delete} />
+    <XSquare
+      id={"delete"}
+      onClick={() => onDelete(id)}
+      className={style.delete}
+    />
   );
 };

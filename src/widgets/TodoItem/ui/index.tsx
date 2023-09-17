@@ -7,7 +7,7 @@ import style from "../styles/todo-item.module.scss";
 
 export const TodoItem: FC<TodoItemProps> = ({ todo }) => {
   return (
-    <div className={style.todo} data-testid="todo_list">
+    <div className={style.todo} id={todo.id}>
       <div className={style.start}>
         <CompleteTodo todo={todo} />
       </div>
